@@ -1,0 +1,249 @@
+{% extends 'myadmin/common/layout.html' %}
+
+{% block content %}
+
+<style type="text/css">
+    .card-counter{
+    box-shadow: 2px 2px 10px #DADADA;
+    margin: 5px;
+    padding: 20px 10px;
+    background-color: #fff;
+    height: 100px;
+    border-radius: 5px;
+    transition: .3s linear all;
+  }
+
+  .card-counter:hover{
+    box-shadow: 4px 4px 20px #DADADA;
+    transition: .3s linear all;
+  }
+
+  .card-counter.primary{
+    background-color: #007bff;
+    color: #FFF;
+  }
+
+  .card-counter.danger{
+    background-color: #ef5350;
+    color: #FFF;
+  }  
+
+  .card-counter.success{
+    background-color: #66bb6a;
+    color: #FFF;
+  }  
+
+  .card-counter.info{
+    background-color: #26c6da;
+    color: #FFF;
+  }  
+
+  .card-counter i{
+    font-size: 5em;
+    opacity: 0.2;
+  }
+
+  .card-counter .count-numbers{
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    font-size: 32px;
+    display: block;
+  }
+
+  .card-counter .count-name{
+    position: absolute;
+    right: 35px;
+    top: 65px;
+    font-style: italic;
+    text-transform: capitalize;
+    opacity: 0.5;
+    display: block;
+    font-size: 18px;
+  }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="outer-w3-agile col-xl">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/myadmin/users">
+                            <div class="card-counter bg-info">
+                                <i class="fa fa-users"></i>
+                                    {% for row in result1 %}
+                                    <span class="count-numbers bg-info" style="color: white;">{{row.id}}</span>
+                                    {% endfor %}
+                                    <span class="count-name">Users</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="/myadmin/volunteers">
+                            <div class="card-counter primary">
+                                <i class="fa fa-solid fa-user-tie"></i>
+                                    {% for row in result2 %}
+                                    <span class="count-numbers bg-primary">{{row.id}}</span>
+                                    {% endfor %}
+                                    <span class="count-name">Volunteers</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="/myadmin/all_cities">
+                            <div class="card-counter bg-danger">
+                                <i class="fa fa-duotone fa-city"></i>
+                                    {% for row in cities %}
+                                    <span class="count-numbers bg-danger" style="color: white;">{{row.id}}</span>
+                                    {% endfor %}
+                                    <span class="count-name">City</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="/myadmin/all_areas">
+                            <div class="card-counter bg-success">
+                                <i class="fa fa-duotone fa-compass"></i>
+                                <!-- <i class="fa fa-database"></i> -->
+                                    {% for row in areas %}
+                                    <span class="count-numbers bg-success"  style="color: white;">{{row.id}}</span>
+                                    {% endfor %}
+                                    <span class="count-name">Area</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="outer-w3-agile col-xl">
+            <div class="container-fluid">
+                <h2 style="text-align:center; font-weight: bold;">Add City</h2>
+                <br>
+                <form method="post" action="/myadmin/add_city_store" class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()" style="text-align:center;">
+                  <fieldset>
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label">City Name</label>
+                            <input type="text" name="city" id="city" class="form-control1 ng-invalid ng-invalid-required ng-touched" ng-model="model.name" required="">
+                        </div>
+
+                        <div class="form-group filled">
+                              <label class="control-label">State Name</label>
+                            <select name="statename" id="statename" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                            <option value=" ">Select State</option>    
+                            {% for s in states %}
+                            <option value="{{s.id}}">{{s.state_name}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                            <br>
+                        <div class="form-group align-items-center" style="margin-left: 50px;">
+                        <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Submit">
+                        </div>
+                  </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="outer-w3-agile col-xl">
+            <div class="container-fluid">
+                <h2 style="text-align:center; font-weight: bold;">Add Area</h2>
+                <br>
+                <form class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()" method="post" action="/myadmin/add_area_store" style="text-align:center;">
+                  {% csrf_token %}
+                    <fieldset>
+                        <div class="form-group">
+                        <label class="control-label">Area Name</label>
+                        <input type="text" name="area" id="area" class="form-control1 ng-invalid ng-invalid-required ng-touched" ng-model="model.name" required="">
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">City Name</label>
+                        <select name="city" id="city" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                            <option value=" ">Select City</option>    
+                            {% for c in cities %}
+                            <option value="{{c.id}}">{{c.city_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group filled">
+                        <label class="control-label">State Name</label>
+                            <select name="statename" id="statename" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                            <option value=" ">Select State</option>    
+                            {% for s in states %}
+                                <option value="{{s.id}}">{{s.state_name}}</option>
+                            {% endfor %}
+                            </select>
+                    </div>
+
+                    <div class="form-group align-items-center" style="margin-left: 50px;">
+                        <input type="submit" class="btn btn-primary" name="submit" id="submit" value="Submit">
+                    </div>
+                    </fieldset>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="row">
+                    <!-- Stats -->
+                    <div class="outer-w3-agile col-xl">
+                        <div class="stat-grid p-3 d-flex align-items-center justify-content-between bg-primary">
+                            <div class="s-l">
+                                <h5>Projects</h5>
+                                <p class="paragraph-agileits-w3layouts text-white">Lorem Ipsum</p>
+                            </div>
+                            <div class="s-r">
+                                <h6>340
+                                    <i class="far fa-edit"></i>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="stat-grid p-3 mt-3 d-flex align-items-center justify-content-between bg-success">
+                            <div class="s-l">
+                                <h5>Clients</h5>
+                                <p class="paragraph-agileits-w3layouts">Lorem Ipsum</p>
+                            </div>
+                            <div class="s-r">
+                                <h6>250
+                                    <i class="far fa-smile"></i>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="stat-grid p-3 mt-3 d-flex align-items-center justify-content-between bg-danger">
+                            <div class="s-l">
+                                <h5>Tasks</h5>
+                                <p class="paragraph-agileits-w3layouts">Lorem Ipsum</p>
+                            </div>
+                            <div class="s-r">
+                                <h6>232
+                                    <i class="fas fa-tasks"></i>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="stat-grid p-3 mt-3 d-flex align-items-center justify-content-between bg-warning">
+                            <div class="s-l">
+                                <h5>Employees</h5>
+                                <p class="paragraph-agileits-w3layouts">Lorem Ipsum</p>
+                            </div>
+                            <div class="s-r">
+                                <h6>190
+                                    <i class="fas fa-users"></i>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!--// Stats -->
+                    <!-- Pie-chart -->
+                </div>

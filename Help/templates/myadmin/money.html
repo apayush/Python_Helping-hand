@@ -1,0 +1,41 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+
+ <!-- table3 -->
+<div class="outer-w3-agile mt-3">
+    <h4 class="tittle-w3-agileits mb-4 mt-5">Donated Money</h4>
+    <div class="row ">
+        <div class="col-xl"></div>
+        <div class="col-xl"></div>
+        <div class="col-xl"></div>
+        <div class="col-xl"></div>
+        <div class="col-xl"></div>
+        <div class="col-xl" style="font-weight: bold;"></div>
+        <div class="col-xl"></div>
+    </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Donation Id</th>
+                    <th>Ammount</th>
+                    <th>Description</th>
+                    <th>Donation Date</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            {% for row in result1 %}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.ammount}}</td>
+                <td>{{row.description}}</td>
+                <td>{{row.date}}</td>
+                <td>{{row.user.username}}</td>
+            </tr>
+            {% endfor %}
+                    
+        </table>
+</div>
+
+
+{% endblock %}
+

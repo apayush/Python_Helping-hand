@@ -1,0 +1,35 @@
+
+{% extends 'myadmin/common/layout.html' %}
+
+{% block content %}
+ <!-- table3 -->
+<div class="outer-w3-agile mt-3">
+
+    <h4 class="tittle-w3-agileits mb-4 mt-5">All Feedback</h4>
+        <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">Feedback Id</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Date</th>
+                <th scope="col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in result1 %}
+                <tr>
+                    <td>{{row.id}}</td>
+                    <td>{{row.rating}}</td>
+                    <td>{{row.comment}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+</div>
+
+
+{% endblock %}
+

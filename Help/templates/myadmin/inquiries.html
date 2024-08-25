@@ -1,0 +1,35 @@
+{% extends 'myadmin/common/layout.html' %}
+
+{% block content %}
+ <!-- table3 -->
+<div class="outer-w3-agile mt-3">
+    <h4 class="tittle-w3-agileits mb-4 mt-5">All Inquiries</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Inquiry Id</th>
+                    <th scope="col">Inquiry Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>                        
+            <tbody>
+            {% for row in result1 %}
+                <tr>
+                    <td>{{row.id}}</td>
+                    <td>{{row.user_name}}</td>
+                    <td>{{row.email}}</td>
+                    <td>{{row.contact}}</td>
+                    <td>{{row.message}}</td>
+                    <td>{{row.date}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+                          
+         </table>
+    </div>
+
+
+{% endblock %}

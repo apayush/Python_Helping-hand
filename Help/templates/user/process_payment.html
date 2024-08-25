@@ -1,0 +1,96 @@
+{% extends 'user/common/layout.html' %}
+
+{% block content %}
+{% load static%}
+<style type="text/css">
+
+.img1
+{
+  background-image: url("{% static 'user/images/bg_2.jpg' %}");
+}
+  .breadcrumbs {
+  padding: 140px 0 60px 0;
+  min-height: 30vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.breadcrumbs:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  inset: 0;
+}
+
+.breadcrumbs h2 {
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-secondary);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.breadcrumbs ol a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+.breadcrumbs ol a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #fff;
+  content: "/";
+</style>
+
+<div class="breadcrumbs d-flex align-items-center img1">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>process payment</h2>
+        <ol>
+          <li><a href="/user/home">Home</a></li>
+          <li>process payment</a></li>
+        </ol>
+
+<div class="container-fluid">
+<form class="text-center p-5" action="/user/success" method="POST">
+        {% csrf_token %}      
+
+        <!-- RAZORPAY INTEGRATION HERE -->
+        <script src="https://checkout.razorpay.com/v1/checkout.js" 
+        data-key="rzp_test_PvM4GxK9MYlCUc" 
+        data-amount="{{payment.amount}}"
+        data-currency="INR" 
+        data-order_id="{{payment.id}}" 
+        data-buttontext="Pay with Razorpay"
+        data-name="Helping Hand"
+        data-description="Help needy person"
+        data-image="https://oibp1.000webhostapp.com/logo.PNG" 
+        data-prefill.name="{{request.user.first_name}}"
+        data-prefill.email="{{request.user.email}}" 
+        data-theme.color="#F37254"></script>
+
+    </form>
+</div>
+</div><!-- End Breadcrumbs -->
+</div>
+{% endblock %}

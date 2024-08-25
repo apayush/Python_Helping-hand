@@ -1,0 +1,303 @@
+{% extends 'user/common/layout.html' %}
+
+{% block content %}
+{% load static%}
+<style type="text/css">
+
+.img1
+{
+  background-image: url("{% static 'user/images/bg_2.jpg' %}");
+}
+  .breadcrumbs {
+  padding: 140px 0 60px 0;
+  min-height: 30vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.breadcrumbs:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  inset: 0;
+}
+
+.breadcrumbs h2 {
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-secondary);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.breadcrumbs ol a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+.breadcrumbs ol a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #fff;
+  content: "/";
+</style>
+
+<div class="breadcrumbs d-flex align-items-center img1">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Donation</h2>
+        <ol>
+          <li><a href="/user/home">Home</a></li>
+          <li>Donation</a></li>
+        </ol>
+    </div><!-- End Breadcrumbs -->
+</div>
+
+
+<section class="ftco-section-3 ">
+  <!-- <div class="container"> -->
+    <div class="row g-5">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-4">
+        <h4 class="mb-4" style="text-align:center; font-weight: bold;">Donation</h4>
+            <form action="/user/donation_store" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Title</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="title" name="title" required="" />
+                  </div>
+                </div>
+                
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Description</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <textarea class="form-control form-control-lg" id="des" name="des" required=""></textarea>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Category</h6>
+                  </div>
+                <div class="col-md-9 pe-5">
+                    <select class="form-control" id="cat" name="cat" required="">
+                        <option value="">Select Category For Donation</option>
+                        {% for c in categories %}
+                          <option value="{{c.category_name}}">{{c.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Conatct Person:</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="cper" name="cper" required="" />
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Conatct No:</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="cco" name="cco" required="" />
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Addresss</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <textarea class="form-control form-control-lg" id="add" name="add" required=""></textarea>
+                  </div>
+                </div>
+
+                 <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-1 ps-5 text-dark">
+                    <h6 class="mb-0">city</h6>
+                  </div>
+                <div class="col-md-5 pe-5">
+                    <select class="form-control" id="city" name="city" required="">
+                        <option value="">Select City</option>
+                        {% for d in cities %}
+                          <option value="{{d.id}}">{{d.city_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <!-- area start -->
+                  <div class="col-md-1 ps-5 text-dark">
+                    <h6 class="mb-0">area</h6>
+                  </div>
+                <div class="col-md-5 pe-5">
+                    <select class="form-control" id="area" name="area" required="">
+                        <option value="">Select Area</option>
+                        {% for a in areas %}
+                          <option value="{{a.id}}">{{a.area_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+
+                </div>
+
+              <div class="d-flex justify-content-center pt-3">
+                <input type="submit" value="Post Donate"class="btn btn-dark btn-lg ms-12">
+              </div>
+              </div>
+            </form>
+      </div>
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-4">
+        <img src="{% static 'user/images/donate.jpg' %}" height="500" width="700">
+        <h1 class="" style="text-align:center;">“Thank you for your support and for your belief in doing good. We promise to be responsible stewards of both your donation and your trust.”</h1>
+      </div>
+      <div class="col-lg-1">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+<section class="ftco-section contact-section ftco-degree-bg">
+      <div class="container">
+        <div class="row block-9">
+          <div class="col-md-6 m-auto pr-md-5">
+            <h4 class="mb-4" style="text-align:center">Donation</h4>
+            <form action="/user/donation_store" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Title</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="title" name="title" required="" />
+                  </div>
+                </div>
+                
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Description</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <textarea class="form-control form-control-lg" id="des" name="des" required=""></textarea>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Donation Category</h6>
+                  </div>
+                <div class="col-md-9 pe-5">
+                    <select class="form-control" id="cat" name="cat" required="">
+                        <option value="">Select Category For Donation</option>
+                        {% for c in categories %}
+                          <option value="{{c.category_name}}">{{c.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Conatct Person:</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="cper" name="cper" required="" />
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Conatct No:</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <input type="text" class="form-control form-control-lg" id="cco" name="cco" required="" />
+                  </div>
+                </div>
+
+                <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-3 ps-5 text-dark">
+                    <h6 class="mb-0">Addresss</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                    <textarea class="form-control form-control-lg" id="add" name="add" required=""></textarea>
+                  </div>
+                </div>
+
+                 <div class="row align-items-center pt-4 pb-3">
+                  <div class="col-md-1 ps-5 text-dark">
+                    <h6 class="mb-0">city</h6>
+                  </div>
+                <div class="col-md-5 pe-5">
+                    <select class="form-control" id="city" name="city" required="">
+                        <option value="">Select City</option>
+                        {% for d in cities %}
+                          <option value="{{d.id}}">{{d.city_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <!-- area start -->
+                  <div class="col-md-1 ps-5 text-dark">
+                    <h6 class="mb-0">area</h6>
+                  </div>
+                <div class="col-md-5 pe-5">
+                    <select class="form-control" id="area" name="area" required="">
+                        <option value="">Select Area</option>
+                        {% for a in areas %}
+                          <option value="{{a.id}}">{{a.area_name}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+
+                </div>
+
+              <div class="d-flex justify-content-center pt-3">
+                <input type="submit" value="Post Donate"class="btn btn-dark btn-lg ms-12">
+              </div>
+              </div>
+            </form>
+            {% if messages %}
+
+<ul class="messages" style="text-align:center;">
+    {% for message in messages %}
+    <li style="color:green;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+          </div>
+        </div>
+      </div>
+</section>

@@ -1,0 +1,49 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+
+<div class="outer-w3-agile mt-3">
+    <h4 class="tittle-w3-agileits mb-4 mt-5">All Area</h4>
+    <h5><i class="fa fa-solid fa-chevron-left" style="text-align:right; float: right;"><a href="/myadmin/dashboard">back</a></i></h5>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>id</th>
+              <th>Area Name</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+            <tbody>
+        {% for a in areas %}
+        <tr class="active">
+          <th scope="row">{{a.id}}</th>
+          <td>{{a.area_name}}</td>
+          <td>
+            <button type="button" class="btn btn-success">
+              <a href="/myadmin/edit_area/{{a.id}}">Edit</a>
+            </button>
+          </td>         
+          <td>
+            <button type="button" class="btn btn-danger">
+              <a href="/myadmin/delete_area/{{a.id}}" onclick="return confirm ('Are you sure you want to delete {{a.area_name}}');">Delete</a>
+            </button>
+          </td>         
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+   
+{% endblock %}
+
+<div class="col-md-12 graphs">
+     <div class="xs">
+     <h3>All Cities</h3>
+    <div class="bs-example4" data-example-id="contextual-table">
+    <table class="table">
+      
+      
+    </table>
+   </div>
+ </div>
+</div>

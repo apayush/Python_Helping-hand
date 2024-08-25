@@ -1,0 +1,113 @@
+{% load static %}
+<style type="text/css">
+.img1
+{
+  background-image: url("{% static 'myadmin/images/hh.jpg' %}");
+}
+</style>
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>
+                    <a href="/myadmin/dashboard">Helping Hand</a>
+                </h1>
+                <span>HH</span>
+            </div>
+            <div class="profile-bg"></div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="/myadmin/dashboard">
+                        <i class="fas fa-th-large"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-edit"></i>
+                        Categories
+                        <i class="fas fa-angle-down fa-pull-right"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/myadmin/create_categories">Add New Category</a>
+                        </li>
+                        <li>
+                            <a href="/myadmin/read_category">View All Categories</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/myadmin/users">
+                        <i class="fa fa-users"></i>
+                        Users
+                    </a>
+                </li>
+
+                 <li>
+                    <a href="/myadmin/volunteers">
+                        <i class="fa-solid fa-user-tie"></i>
+                        Volunteers
+                    </a>
+                </li>
+
+                
+                <li>
+                    <a href="/myadmin/vol_acceptance">
+                        <i class="fa-regular fa-circle-check"></i>
+                        Volunteer Acceptance
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myadmin/donations">
+                        <i class="fa fa-solid fa-hand-holding-heart"></i>
+                        View All Donations
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/myadmin/money">
+                        <i class="fa fa-solid fa-hand-holding-dollar"></i>
+                        Money Donation
+                    </a>
+                </li>
+                    
+
+                <li>
+                    <a href="#event" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-edit"></i>
+                        Events
+                        <i class="fas fa-angle-down fa-pull-right"></i>
+                    </a>
+                    <ul class="collapse list-unstyled" id="event">
+                        <li>
+                            <a href="/myadmin/all_events"> View All Events</a>
+                        </li>
+                        <li>
+                            <a href="/myadmin/up_events">Upcoming Events</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/myadmin/inquiries">
+                        <i class="far fa-envelope"></i>
+                        View Inquiries
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/myadmin/feedback">
+                        <i class="far fa-comment"></i>
+                        View Feedback
+                    </a>
+                </li>
+                <li>
+                    <a href="/myadmin/logout">
+                        <i class="fa fa-sign-out-alt"></i>
+                        Log Out
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>

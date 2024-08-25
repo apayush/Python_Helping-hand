@@ -1,0 +1,65 @@
+{% extends 'myadmin/common/layout.html' %}
+
+{% block content %}
+ <!-- table3 -->
+<div class="outer-w3-agile mt-3">
+
+    <h4 class="tittle-w3-agileits mb-4 mt-5">Event Details</h4>
+    <h5><i class="fa fa-solid fa-chevron-left" style="text-align:right; float: right;"><a href="/myadmin/all_events">back</a></i></h5>
+    <table class="table table-striped col-md-6 mb-2">
+            <tbody>
+            <tr>
+           <th>Field</th>
+           <th>Information</th>
+       </tr>
+       <tr>
+           <th>ID</th>
+           <td>{{result.id}}</td>
+       </tr>
+       <tr>
+           <th>Event Name</th>
+           <td>{{result.title}}</td>
+       </tr>
+       <tr>
+           <th>Description</th>
+           <td>{{result.description}}</td>
+       </tr>
+       <tr>
+           <th>Event Type</th>
+           <td>{{result.event_type}}</td>
+       </tr>
+       <tr>
+           <th>Event Date</th>
+           <td>{{result.event_date}}</td>
+       </tr>
+        <tr>
+           <th>Reg Date</th>
+           <td>{{result.reg_date}}</td>
+       </tr>
+        <tr>
+           <th>Username</th>
+           <td>{{result.user.username}}</td>
+       </tr>
+
+            </tbody>
+    </table>
+    <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-12 mb-4" style="text-align:right;float: right;">
+        <button type="button" class="btn btn-success"><a href="/myadmin/accept_event/{{result.id}}">Accept Event</a></button>
+
+        <button type="button" class="btn btn-danger"><a href="/myadmin/reject_event/{{result.id}}">Reject Event</a></button>
+        </div>
+    </div>
+
+    {% if messages %}
+<ul class="messages" style="text-align:center;">
+    {% for message in messages %}
+    <li style="color:green;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</div>
+
+
+{% endblock %}
+

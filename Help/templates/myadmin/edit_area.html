@@ -1,0 +1,53 @@
+{% extends 'myadmin/common/layout.html' %}
+{% block content %}
+
+<div class="outer-w3-agile col-xl mt-3 mr-xl-3">
+    <h4 class="tittle-w3-agileits mb-4">Edit Area</h4>
+        <form class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()" method="post" action="/myadmin/update_area/{{result.id}}">
+          {% csrf_token %}
+          <fieldset>
+            <div class="form-group">
+              <label class="control-label">Area Name</label>
+              <input type="text" name="area" id="area" class="form-control1 ng-invalid ng-invalid-required ng-touched" ng-model="model.name" required="" value="{{result.area_name}}">
+            </div>
+            <div class="form-group filled">
+              <label class="control-label">City</label>
+              <select name="city" id="city" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                <option value="Select a category">Select a City</option>
+
+                {% for cy in city %}
+                <option value="{{cy.id}} {% if result.city_id == cy.id %} selected {% endif %}">{{cy.city_name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </fieldset>
+        </form>
+</div>
+
+{% endblock %}
+<form class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()" method="post" action="/myadmin/update_area/{{result.id}}">
+          {% csrf_token %}
+          <fieldset>
+            <div class="form-group">
+              <label class="control-label">Area Name</label>
+              <input type="text" name="area" id="area" class="form-control1 ng-invalid ng-invalid-required ng-touched" ng-model="model.name" required="" value="{{result.area_name}}">
+            </div>
+            <div class="form-group filled">
+              <label class="control-label">City</label>
+              <select name="cityname" id="cityname" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                <option value="Select a category">Select a City</option>
+
+                {% for cy in city %}
+                <option value="{{cy.id}} {% if result.city_id == cy.id %} selected {% endif %}">{{cy.city_name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="cancel" class="btn btn-default">cancel</button>
+            </div>
+          </fieldset>
+        </form>

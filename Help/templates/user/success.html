@@ -1,0 +1,169 @@
+{% extends 'user/common/layout.html' %}
+
+{% block content %}
+{% load static%}
+<style type="text/css">
+
+.img1
+{
+  background-image: url("{% static 'user/images/bg_2.jpg' %}");
+}
+  .breadcrumbs {
+  padding: 140px 0 60px 0;
+  min-height: 30vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.breadcrumbs:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  inset: 0;
+}
+
+.breadcrumbs h2 {
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-secondary);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.breadcrumbs ol a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+.breadcrumbs ol a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #fff;
+  content: "/";
+</style>
+<style type="text/css">
+
+    body
+    {
+        background:#f2f2f2;
+    }
+
+    .payment
+  {
+    border:1px solid #f2f2f2;
+    height:280px;
+        border-radius:20px;
+        background:#fff;
+  }
+   .payment_header
+   {
+     background:rgba(255,102,0,1);
+     padding:20px;
+       border-radius:20px 20px 0px 0px;
+     
+   }
+   
+   .check
+   {
+     margin:0px auto;
+     width:50px;
+     height:50px;
+     border-radius:100%;
+     background:#fff;
+     text-align:center;
+   }
+   
+   .check i
+   {
+     vertical-align:middle;
+     line-height:50px;
+     font-size:30px;
+   }
+
+    .content 
+    {
+        text-align:center;
+    }
+
+    .content  h1
+    {
+        font-size:25px;
+        padding-top:25px;
+    }
+
+    .content a
+    {
+        width:200px;
+        height:35px;
+        color:#fff;
+        border-radius:30px;
+        padding:5px 10px;
+        background:rgba(255,102,0,1);
+        transition:all ease-in-out 0.3s;
+    }
+
+    .content a:hover
+    {
+        text-decoration:none;
+        background:#000;
+    }
+   
+</style>
+
+<div class="breadcrumbs d-flex align-items-center img1">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Success</h2>
+        <ol>
+          <li><a href="/user/home">Home</a></li>
+          <li>Success</a></li>
+        </ol>
+
+
+    </div><!-- End Breadcrumbs -->
+</div>
+
+<section class="page-title">
+  <!-- Container Start -->
+  <!-- Container End -->
+</section>
+
+<div class="container" style="margin-bottom: 160px;">
+   <div class="row">
+      <div class="col-md-6 mx-auto mt-5">
+         <div class="payment bg-light">
+            <div class="payment_header">
+               <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+            </div>
+            <div class="content">
+               <h1>Payment Successfully done !</h1><br><br>
+              
+               <a href="/user/home">Go to Home</a>
+            </div>
+            
+         </div>
+      </div>
+</div>
+</div>
+
+{% endblock %}

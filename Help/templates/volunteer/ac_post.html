@@ -1,0 +1,158 @@
+{% extends 'volunteer/common/layout.html' %}
+
+{% block content %}
+
+{% load static%}
+<style type="text/css">
+
+.img1
+{
+  background-image: url("{% static 'volunteer/images/bg_2.jpg' %}");
+}
+  .breadcrumbs {
+  padding: 140px 0 60px 0;
+  min-height: 30vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.breadcrumbs:before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  inset: 0;
+}
+
+.breadcrumbs h2 {
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-secondary);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 0 10px 0;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.breadcrumbs ol a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+.breadcrumbs ol a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #fff;
+  content: "/";
+</style>
+
+<div class="breadcrumbs d-flex align-items-center img1">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Accepted Donation Post</h2>
+        <ol>
+          <li><a href="/volunteer/home">Home</a></li>
+          <li>Donation</a></li>
+        </ol>
+
+
+    </div><!-- End Breadcrumbs -->
+</div>
+
+<div class="outer-w3-agile mt-3 container-fluid">
+
+    <h4 class="tittle-w3-agileits mb-4 mt-5" style="text-align: center; font-weight: bold; font-size: 40px;">Accepted Donation Posts</h4>
+<h5><i class="fa fa-solid fa-chevron-left" style="text-align:right; float: right;">
+    <a href="/volunteer/accepted_post">back</a></i></h5>
+<div class="container-fluid">
+      <table class="table table-bordered table-light text-dark" style="text-align:center;">
+               
+        <tr>
+           <th>Field</th>
+           <th>Information</th>
+       </tr>
+       <tr>
+           <th>ID</th>
+           <td>{{result.donate.id}}</td>
+       </tr>
+       <tr>
+           <th>Donation Title</th>
+           <td>{{result.donate.title}}</td>
+       </tr>
+       <tr>
+           <th>Donation Description</th>
+           <td>{{result.donate.description}}</td>
+       </tr>
+       <tr>
+           <th>Address</th>
+           <td>{{result.donate.address}}</td>
+       </tr>
+       <tr>
+           <th>Donation Date</th>
+           <td>{{result.donate.donation_date}}</td>
+       </tr>
+        <tr>
+           <th>Donation Category</th>
+           <td>{{result.donate.don_category}}</td>
+       </tr>
+        <tr>
+           <th>User</th>
+           <td>{{result.user.username}}</td>
+       </tr>
+        <tr>
+           <th>City</th>
+           <td>{{result.donate.city.city_name}}</td>
+       </tr>
+       <tr>
+           <th>Area</th>
+           <td>{{result.donate.area.area_name}}</td>
+       </tr>
+       <tr>
+           <th>Contact No</th>
+           <td>{{result.donate.contact_no}}</td>
+       </tr>
+       <tr>
+           <th>Contact Person</th>
+           <td>{{result.donate.contact_person}}</td>
+       </tr>
+    </table>
+
+    <table style="text-align:right; float:right;" class="table-bordered">
+        <tr>
+            <td>
+                <button type="button" class="btn btn-success" style="text-align:right; float:right;">
+        <a href="/volunteer/received/{{result.id}}" style="color:white;">Received</a>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" style="text-align:right; float:right;">
+        <a href="/volunteer/delivered/{{result.id}}" style="color:white;">Delivered</a>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+</div>
+</div>
+
+{% endblock %}
+
+

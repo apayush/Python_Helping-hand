@@ -1,0 +1,56 @@
+{% load static %}
+
+<style type="text/css">
+.nav-item
+{
+  font-size:20px;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-primary ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/user/home">HELPING HAND</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="oi oi-menu"></span> Menu
+      </button>
+
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/user/home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/user/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/user/contact" class="nav-link">Contact</a></li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item"><a href="/user/events" class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="/user/donation" class="nav-link">Donation</a></li>
+          <li class="nav-item"><a href="/user/moneydonation" class="nav-link">Money Donation</a></li>
+          <li class="nav-item"><a href="/user/feedback" class="nav-link">Feedback</a></li>
+          <li class="nav-item"><a href="/user/profile/{{user.id}}" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href="/user/logout" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+          {% else %}
+          <li class="nav-item dropdown dropdown-slide @@dashboard">
+                <a class="nav-link dropdown-toggle login-button" data-toggle="dropdown" href="#!">Register as
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/user/register">User</a></li>
+                  <li><a class="dropdown-item" href="/volunteer/register">Volunteer</a></li>
+                </ul>
+          </li>
+
+          <li class="nav-item dropdown dropdown-slide @@dashboard">
+                <a class="nav-link dropdown-toggle login-button" data-toggle="dropdown" href="#!">Login as
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/user/">User</a></li>
+                  <li><a class="dropdown-item" href="/volunteer/">Volunteer</a></li>
+                </ul>
+          </li>
+           {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
